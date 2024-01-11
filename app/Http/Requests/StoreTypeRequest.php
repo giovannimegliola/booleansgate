@@ -11,7 +11,7 @@ class StoreTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:200',
+            'desc' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Il campo name è obbligatorio',
+            'name.max' => 'Il campo name deve avere massimo :max caratteri',
+            'desc.required' => 'Il campo desc è obbligatorio'
         ];
     }
 }

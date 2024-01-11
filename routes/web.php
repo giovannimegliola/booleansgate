@@ -42,3 +42,4 @@ require __DIR__ . '/auth.php';
 Route::fallback(function () {
     return redirect()->route('admin.dashboard');
 });
+
