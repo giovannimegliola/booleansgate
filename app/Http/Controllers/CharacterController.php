@@ -13,7 +13,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $characters = Character::all();
+        return view("characters.index", compact("characters"));
     }
 
     /**
@@ -21,7 +22,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        //
+        return view('characters.create');
     }
 
     /**
@@ -29,7 +30,9 @@ class CharacterController extends Controller
      */
     public function store(StoreCharacterRequest $request)
     {
-        //
+        $form_data = $request->validated();
+        $newCharacter = Character::create($form_data);
+        return to_route('characters.show', $newCharacter->id);
     }
 
     /**
@@ -37,7 +40,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        //
+        return view('characters.show', compact('character'));
     }
 
     /**
@@ -45,7 +48,7 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        //
+        return view('characters.edit', compact('character'));
     }
 
     /**
@@ -53,7 +56,10 @@ class CharacterController extends Controller
      */
     public function update(UpdateCharacterRequest $request, Character $character)
     {
-        //
+        $form_data = $request->validated();
+        $character->fill($form_data);
+        $character->update();
+        return to_route('characters.show', $character->id);
     }
 
     /**
@@ -61,6 +67,7 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $character->delete();
+        return to_route('characters.index')->with('message', "$character->name è stato cancellato!");
     }
 }
