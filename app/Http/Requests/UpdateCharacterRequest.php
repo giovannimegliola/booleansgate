@@ -46,6 +46,7 @@ class UpdateCharacterRequest extends FormRequest
             'speed.integer' => 'La velocità deve essere un numero intero',
             'life.required' => 'Inserisci la vita',
             'life.integer' => 'La vita deve essere un numero intero',
+
         ];
     }
 }
