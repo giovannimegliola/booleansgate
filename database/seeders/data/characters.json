@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Orazio Grinzosi",
+        "description": "Il più grande giocatore di lol degli ace gamers",
+        "attack": "99",
+        "defence": "99",
+        "speed": "1",
+        "life": "1000"
+    },
+    {
+        "name": "Pietro Smusi",
+        "description": "Giocatore spietato di Arma 3, temuto da grandi e piccini",
+        "attack": "25",
+        "defence": "25",
+        "speed": "75",
+        "life": "567"
+    },
+    {
+        "name": "Alfonso Torrone",
+        "description": "Non pensare di essere al sicuro vicino a lui, soprattutto se è Natale",
+        "attack": "49",
+        "defence": "34",
+        "speed": "15",
+        "life": "156"
+    },
+    {
+        "name": "Ronaldo da Fiano Romano",
+        "description": "Aho a fio de na bona donna, io so de Fiano Romano",
+        "attack": "67",
+        "defence": "12",
+        "speed": "97",
+        "life": "398"
+    },
+    {
+        "name": "Lamberto Lasagna",
+        "description": "Da grande voleva fare il cuoco, è finito a fare il giudice di X-Factor",
+        "attack": "32",
+        "defence": "57",
+        "speed": "24",
+        "life": "788"
+    }
+]
