@@ -24,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('types.index');
+        return view('types.create');
     }
 
     /**
@@ -69,6 +69,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('types.index')->with('message', "$type->name è stato cancellato!");
     }
 }
