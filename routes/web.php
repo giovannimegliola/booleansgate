@@ -39,6 +39,6 @@ Route::resource('items', ItemController::class);
 // });
 
 
-Route::fallback(function () {
-    return redirect()->route('admin.dashboard');
-});
+// Route::fallback(function () {
+//     return redirect()->route('admin.dashboard');
+// });
