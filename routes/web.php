@@ -38,8 +38,7 @@ Route::resource('items', ItemController::class);
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__ . '/auth.php';
 
-// Route::fallback(function () {
-//     return redirect()->route('admin.dashboard');
-// });
+Route::fallback(function () {
+    return redirect()->route('admin.dashboard');
+});

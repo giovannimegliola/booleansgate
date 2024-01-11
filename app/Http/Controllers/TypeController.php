@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateTypeRequest;
 
 class TypeController extends Controller
@@ -11,9 +13,10 @@ class TypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $type = Type::all();
+        return view('types.index', compact('types'));
     }
 
     /**
@@ -21,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('types.index');
     }
 
     /**
@@ -29,7 +32,9 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $formData = $request->validated();
+        $newType = Type::create($formData);
+        return to_route('types.show', $newType->id);
     }
 
     /**
@@ -37,7 +42,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('types.show', compact('type'));
     }
 
     /**
@@ -45,7 +50,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('types.edit', compact('type'));
     }
 
     /**
@@ -53,7 +58,10 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $formData = $request->validated();
+        $type->fill($formData);
+        $type->update();
+        return to_route('types.index', $type->id);
     }
 
     /**
