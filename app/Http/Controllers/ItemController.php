@@ -13,7 +13,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -21,7 +22,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -29,7 +30,9 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        //
+        $formData = $request->validated();
+        $newItem = Item::create($formData);
+        return to_route('items.show', $newItem->id);
     }
 
     /**
@@ -37,7 +40,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('items.show', compact('item'));
     }
 
     /**
@@ -45,7 +48,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit', compact('item'));
     }
 
     /**
@@ -53,7 +56,11 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        $formData = $request->validated();
+        $item->fill($formData);
+        $item->update();
+        return to_route('comics.show', $item->id);
+
     }
 
     /**
@@ -61,6 +68,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return to_route('items.index')->with('message', "Il prodotto : '$item->name' è stato eliminato");
     }
 }
