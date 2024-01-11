@@ -22,7 +22,30 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:200',
+            'description' => 'nullable',
+            'slug' => 'required|max:200',
+            'category' => 'required|max:100',
+            'type' => 'required|max:100',
+            'weight' => 'required|max:10',
+            'cost' => 'required|max:20',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Field ":attribute" is required',
+            'name.max' => 'Field ":attribute" must be max :max chars',
+            'slug.required' => 'Field ":attribute" is required',
+            'slug.max' => 'Field ":attribute" must be max :max chars',
+            'category.required' => 'Field ":attribute" is required',
+            'category.max' => 'Field ":attribute" must be max :max chars',
+            'type.required' => 'Field ":attribute" is required',
+            'type.max' => 'Field ":attribute" must be max :max chars',
+            'weight.required' => 'Field ":attribute" is required',
+            'weight.max' => 'Field ":attribute" must be max :max chars',
+            'cost.required' => 'Field ":attribute" is required',
+            'cost.max' => 'Field ":attribute" must be max :max chars',
         ];
     }
 }
