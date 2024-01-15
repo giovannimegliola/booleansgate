@@ -1,4 +1,6 @@
 @use './partials/variables' as *;
+@use './partials/login' as *;
+@use './partials/register' as *;
 
 $fa-font-path: "../fonts/webfonts" !default;
 
