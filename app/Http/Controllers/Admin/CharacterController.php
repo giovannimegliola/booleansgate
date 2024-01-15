@@ -33,29 +33,13 @@ class CharacterController extends Controller
      */
     public function store(StoreCharacterRequest $request)
     {
-<<<<<<< HEAD:app/Http/Controllers/CharacterController.php
-
         $formData = $request->validated();
-        //CREATE SLUG
-        //$slug = Character::getSlug($formData['name']);
-        //add slug to formData
-        //$formData['slug'] = $slug;
-        //prendiamo l'id dell'utente loggato
-        //$userId = Auth::id();
-        //dd($userId);
-        //aggiungiamo l'id dell'utente
-        //$formData['user_id'] = $userId;
         if ($request->hasFile('image')) {
             $path = Storage::put('images', $formData['image']);
             $formData['image'] = $path;
         }
-        $character = Character::create($formData);
-        return redirect()->route('admin.characters.show', $character->id);
-=======
-        $form_data = $request->validated();
-        $newCharacter = Character::create($form_data);
+        $newCharacter = Character::create($formData);
         return to_route('admin.characters.show', $newCharacter->id);
->>>>>>> main:app/Http/Controllers/Admin/CharacterController.php
     }
 
     /**
@@ -79,34 +63,19 @@ class CharacterController extends Controller
      */
     public function update(UpdateCharacterRequest $request, Character $character)
     {
-<<<<<<< HEAD:app/Http/Controllers/CharacterController.php
 
-
-        $formData = $request->validated();
-        // if ($character->title !== $formData['title']) {
-        //     //CREATE SLUG
-        //     $slug = Character::getSlug($formData['name']);
-        // }
-        //add slug to formData
-        //$formData['slug'] = $slug;
-        //aggiungiamo l'id dell'utente proprietario del post
-        //$formData['user_id'] = $post->user_id;
+        $form_data = $request->validated();
         if ($request->hasFile('image')) {
             if ($character->image) {
                 Storage::delete($character->image);
             }
 
-            $path = Storage::put('images', $formData['image']);
-            $formData['image'] = $path;
+            $path = Storage::put('images', $form_data['image']);
+            $form_data['image'] = $path;
         }
-        $character->update($formData);
-        return redirect()->route('admin.characters.show', $character->id);
-=======
-        $form_data = $request->validated();
         $character->fill($form_data);
         $character->update();
         return to_route('admin.characters.show', $character->id);
->>>>>>> main:app/Http/Controllers/Admin/CharacterController.php
     }
 
     /**
