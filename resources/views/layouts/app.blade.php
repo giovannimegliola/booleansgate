@@ -46,6 +46,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/admin/characters') }}">{{ __('Characters') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/admin/items') }}">{{ __('Items') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/admin/types') }}">{{ __('Types') }}</a>
+                        </li>
                     </ul> 
 
                     <!-- Right Side Of Navbar -->
