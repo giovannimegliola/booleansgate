@@ -24,14 +24,13 @@
             </div>
 
             
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <label for="image">Image</label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" value={{old('image', $item->image)}}
-                        >
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image">
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div> --}}
+                </div>
 
             <button type="submit" class="btn btn-success">Save</button>
             <button type="reset" class="btn btn-primary">Reset</button>
