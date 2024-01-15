@@ -14,7 +14,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('items.index', compact('items'));
+        return view('admin.items.index', compact('items'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        return view('admin.items.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class ItemController extends Controller
     {
         $formData = $request->validated();
         $newItem = Item::create($formData);
-        return to_route('items.show', $newItem->id);
+        return to_route('admin.items.show', $newItem->id);
     }
 
     /**
@@ -40,7 +40,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show', compact('item'));
+        return view('admin.items.show', compact('item'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        return view('admin.items.edit', compact('item'));
     }
 
     /**
@@ -59,7 +59,7 @@ class ItemController extends Controller
         $formData = $request->validated();
         $item->fill($formData);
         $item->update();
-        return to_route('comics.show', $item->id);
+        return to_route('admin.items.show', $item->id);
 
     }
 
@@ -69,6 +69,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return to_route('items.index')->with('message', "Il prodotto : '$item->name' è stato eliminato");
+        return to_route('admin.items.index')->with('message', "Il prodotto : '$item->name' è stato eliminato");
     }
 }
