@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;

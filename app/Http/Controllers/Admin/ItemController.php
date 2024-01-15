@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -31,6 +33,10 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $formData = $request->validated();
+        if ($request->hasFile('image')) {
+            $path = Storage::put('uploads', $formData['image']);
+            $formData['image'] = $path;
+        }
         $newItem = Item::create($formData);
         return to_route('admin.items.show', $newItem->id);
     }
@@ -57,6 +63,13 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $formData = $request->validated();
+        if ($request->hasFile('image')) {
+            if ($item->image) {
+                Storage::delete($item->image);
+            }
+            $path = Storage::put('uploads', $formData['image']);
+            $formData['image'] = $path;
+        }
         $item->fill($formData);
         $item->update();
         return to_route('admin.items.show', $item->id);
@@ -68,6 +81,9 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        if ($item->image) {
+            Storage::delete($item->image);
+        }
         $item->delete();
         return to_route('admin.items.index')->with('message', "Il prodotto : '$item->name' è stato eliminato");
     }
