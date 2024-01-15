@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
@@ -30,9 +32,23 @@ class CharacterController extends Controller
      */
     public function store(StoreCharacterRequest $request)
     {
-        $form_data = $request->validated();
-        $newCharacter = Character::create($form_data);
-        return to_route('characters.show', $newCharacter->id);
+
+        $formData = $request->validated();
+        //CREATE SLUG
+        //$slug = Character::getSlug($formData['name']);
+        //add slug to formData
+        //$formData['slug'] = $slug;
+        //prendiamo l'id dell'utente loggato
+        //$userId = Auth::id();
+        //dd($userId);
+        //aggiungiamo l'id dell'utente
+        //$formData['user_id'] = $userId;
+        if ($request->hasFile('image')) {
+            $path = Storage::put('images', $formData['image']);
+            $formData['image'] = $path;
+        }
+        $character = Character::create($formData);
+        return redirect()->route('admin.characters.show', $character->id);
     }
 
     /**
@@ -56,10 +72,27 @@ class CharacterController extends Controller
      */
     public function update(UpdateCharacterRequest $request, Character $character)
     {
-        $form_data = $request->validated();
-        $character->fill($form_data);
-        $character->update();
-        return to_route('characters.show', $character->id);
+
+
+        $formData = $request->validated();
+        // if ($character->title !== $formData['title']) {
+        //     //CREATE SLUG
+        //     $slug = Character::getSlug($formData['name']);
+        // }
+        //add slug to formData
+        //$formData['slug'] = $slug;
+        //aggiungiamo l'id dell'utente proprietario del post
+        //$formData['user_id'] = $post->user_id;
+        if ($request->hasFile('image')) {
+            if ($character->image) {
+                Storage::delete($character->image);
+            }
+
+            $path = Storage::put('images', $formData['image']);
+            $formData['image'] = $path;
+        }
+        $character->update($formData);
+        return redirect()->route('admin.characters.show', $character->id);
     }
 
     /**
@@ -67,6 +100,10 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
+        if ($character->image) {
+            Storage::delete($character->image);
+        }
+
         $character->delete();
         return to_route('characters.index')->with('message', "$character->name è stato cancellato!");
     }
