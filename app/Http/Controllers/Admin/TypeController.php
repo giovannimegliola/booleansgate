@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
-use Illuminate\Http\Request;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Facades\Storage;
 
 class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         $types = Type::all();
         return view('types.index', compact('types'));
@@ -33,8 +33,12 @@ class TypeController extends Controller
     public function store(StoreTypeRequest $request)
     {
         $formData = $request->validated();
+        if ($request->hasFile('image')) {
+            $path = Storage::put('uploads', $formData['image']);
+            $formData['image'] = $path;
+        }
         $newType = Type::create($formData);
-        return to_route('types.show', $newType->id);
+        return to_route('admin.types.show', $newType->id);
     }
 
     /**
@@ -59,9 +63,17 @@ class TypeController extends Controller
     public function update(UpdateTypeRequest $request, Type $type)
     {
         $formData = $request->validated();
+        if ($request->hasFile('image')) {
+            if ($type->image) {
+                Storage::delete($type->image);
+            }
+            $path = Storage::put('uploads', $formData['image']);
+            $formData['image'] = $path;
+        }
         $type->fill($formData);
         $type->update();
-        return to_route('types.index', $type->id);
+        return to_route('admin.types.show', $type->id);
+
     }
 
     /**
