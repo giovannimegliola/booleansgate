@@ -4,7 +4,7 @@
     <main>
         <section class="container py-4 ">
             <h1>Types</h1>
-            <a href="{{ route('types.create') }}" class="btn btn-primary my-3">Create new Type</a>
+            <a href="{{ route('admin.types.create') }}" class="btn btn-primary my-3">Create new Type</a>
             @if (session()->has('message'))
                 <div class="alert alert-success">{{ session()->get('message') }}</div>
             @endif
@@ -16,8 +16,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $type->name }}</h5>
                                 <p class="card-text">{!! substr($type->desc, 0, 100) . '...' !!}</p>
-                                <a href="{{ route('types.show', $type->id) }}" class="btn btn-primary">See details</a>
-                                <form action="{{ route('types.destroy', $type->id) }}" method="POST">
+                                <a href="{{ route('admin.types.show', $type->id) }}" class="btn btn-primary">See details</a>
+                                <form action="{{ route('admin.types.destroy', $type->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="cancel-button btn btn-danger"
