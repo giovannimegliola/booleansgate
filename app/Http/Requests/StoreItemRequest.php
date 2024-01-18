@@ -23,6 +23,7 @@ class StoreItemRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200',
+            'image' => 'nullable|image',
             'description' => 'nullable',
             'slug' => 'required|max:200',
             'category' => 'required|max:100',
@@ -46,6 +47,7 @@ class StoreItemRequest extends FormRequest
             'weight.max' => 'Field ":attribute" must be max :max chars',
             'cost.required' => 'Field ":attribute" is required',
             'cost.max' => 'Field ":attribute" must be max :max chars',
+            'image.image' => 'Field ":attribute" must be an image'
         ];
     }
 }

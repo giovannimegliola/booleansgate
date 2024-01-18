@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Character;
+use App\Models\Type;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Item;
 
 class CharacterController extends Controller
 {
@@ -25,7 +27,9 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('admin.characters.create');
+        $types = Type::all();
+        $items = Item::all();
+        return view('admin.characters.create', compact('types', 'items'));
     }
 
     /**
@@ -55,7 +59,8 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('admin.characters.edit', compact('character'));
+        $types = Type::all();
+        return view('admin.characters.edit', compact('character', 'types'));
     }
 
     /**
