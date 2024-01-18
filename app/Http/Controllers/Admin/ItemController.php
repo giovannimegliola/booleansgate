@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
@@ -33,6 +34,8 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $formData = $request->validated();
+        $slug = Str::slug($formData['name'], '-');
+        $formData['slug'] = $slug;
         if ($request->hasFile('image')) {
             $path = Storage::put('uploads', $formData['image']);
             $formData['image'] = $path;
