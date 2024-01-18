@@ -23,6 +23,19 @@
     </div>
 
     <div class="mb-3">
+        <label for="type_id">Type</label>
+        <select class="form-control @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+            <option value="">Seleziona un tipo</option>
+            @foreach ($types as $type)
+                <option value="{{$type->id}}" {{old('type_id') == $type->id ? 'selected' : ''}}>{{$type->name}}</option>
+            @endforeach
+        </select>
+        @error('type_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
         <label for="attack">Attack</label>
         <textarea class="form-control @error('attack') is-invalid @enderror" name="attack" id="attack" cols="30" rows="10">{{ old('attack') }}
         </textarea>

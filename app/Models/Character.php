@@ -9,5 +9,10 @@ class Character extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'attack', 'defence', 'speed', 'life'];
+    protected $fillable = ['name', 'type_id', 'description', 'attack', 'defence', 'speed', 'life'];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

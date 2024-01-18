@@ -28,6 +28,7 @@ class StoreCharacterRequest extends FormRequest
             'defence' => 'required|integer',
             'speed' => 'required|integer',
             'life' => 'required|integer',
+            'type_id' => ['nullable', 'exists:types,id']
         ];
     }
 
