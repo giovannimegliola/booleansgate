@@ -21,7 +21,7 @@ class ItemSeeder extends Seeder
         foreach ($items as $item) {
             $newItem = new Item();
             $newItem->name = $item['name'];
-            $newItem->image = ItemSeeder::storeImage($item['image'], $item['title']);
+            // $newItem->image = ItemSeeder::storeImage($item['image'], $item['title']);
             $newItem->slug = $item['slug'];
             $newItem->type = $item['type'];
             $newItem->category = $item['category'];
@@ -30,13 +30,13 @@ class ItemSeeder extends Seeder
             $newItem->save();
         }
     }
-    public function storeImage($img, $name)
-    {
-        $url = $img;
-        $contents = file_get_contents($url);
-        $name = Str::slug($name, '-') . 'jpg';
-        $path = 'images/' . $name;
-        Storage::put($path, $contents);
-        return $path;
-    }
+    // public function storeImage($img, $name)
+    // {
+    //     $url = $img;
+    //     $contents = file_get_contents($url);
+    //     $name = Str::slug($name, '-') . 'jpg';
+    //     $path = 'images/' . $name;
+    //     Storage::put($path, $contents);
+    //     return $path;
+    // }
 }

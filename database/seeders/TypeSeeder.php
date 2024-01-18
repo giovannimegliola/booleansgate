@@ -22,17 +22,17 @@ class TypeSeeder extends Seeder
             $newType = new Type();
             $newType->name = $type['name'];
             $newType->desc = $type['desc'];
-            $newType->image = TypeSeeder::storeImage($type['image'], $type['name']);
+            // $newType->image = TypeSeeder::storeImage($type['image'], $type['name']);
             $newType->save();
         }
     }
-    public function storeImage($img, $name)
-    {
-        $url = $img;
-        $contents = file_get_contents($url);
-        $name = Str::slug($name, '-') . 'jpg';
-        $path = 'images/' . $name;
-        Storage::put($path, $contents);
-        return $path;
-    }
+    // public function storeImage($img, $name)
+    // {
+    //     $url = $img;
+    //     $contents = file_get_contents($url);
+    //     $name = Str::slug($name, '-') . 'jpg';
+    //     $path = 'images/' . $name;
+    //     Storage::put($path, $contents);
+    //     return $path;
+    // }
 }
