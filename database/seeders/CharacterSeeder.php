@@ -25,6 +25,7 @@ class CharacterSeeder extends Seeder
             $newCharacter = new Character();
             $newCharacter->name = $character['name'];
             $newCharacter->description = $character['description'];
+            $newCharacter->image = CharacterSeeder::storeimage($character['name']);
             $newCharacter->attack = $character['attack'];
             $newCharacter->defence = $character['defence'];
             $newCharacter->speed = $character['speed'];
@@ -36,16 +37,14 @@ class CharacterSeeder extends Seeder
         }
     }
 
-    public static function storeimage($img, $name)
+    public static function storeimage($name)
     {
         //$url = 'https:' . $img;
-        $url = $img;
-        $contents = file_get_contents($url);
+        $contents = file_get_contents(__DIR__ . '/images/' . $name . '.gif');
         // $temp_name = substr($url, strrpos($url, '/') + 1);
         // $name = substr($temp_name, 0, strpos($temp_name, '?')) . '.jpg';
-        $name = Str::slug($name, '-') . '.jpg';
-        $path = 'images/' . $name;
-        Storage::put('images/' . $name, $contents);
+        $path = 'images/' . $name . '.gif';
+        Storage::put('images/' . $name . '.gif', $contents);
         return $path;
     }
 }
