@@ -17,6 +17,11 @@
                     <span>Speed: {{$character->speed}}</span>
                     <span>Life: {{$character->life}}</span>
                 </div>
+                <div class="d-flex mx-5 mt-3">
+                    @foreach ($character->items as $item)
+                    <div class="badge rounded-pill items-color me-2">{{$item->name}}</div>
+                @endforeach
+                </div>
                 <div class=" d-flex mx-5">
                     <a href="{{route('admin.characters.edit', $character->id)}}" class="btn btn-light  fs-5 my-3">modifica</a>
 
@@ -27,9 +32,8 @@
                     </form>
                 </div>
 
-                @foreach ($character->items as $item)
-                    <div class="badge rounded-pill text-bg-success">{{$item->name}}</div>
-                @endforeach
+                
+                
             </div>
         </div>
 
