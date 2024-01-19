@@ -5,7 +5,11 @@
         <div class="row py-5">
             <div class="col-4">
                 <h1 class="text-center display-3 ">{{$character->name}}</h1>
-        <img src="{{ Vite::asset('/public/image/' . $character->name . '.gif') }}" class="w-100" alt="{{ $character->name }}">
+                @if(!$character->image)
+                        <img src="{{ Vite::asset('/public/image/' . $character->name . '.gif') }}" class="d-block w-100" alt="{{ $character->name }}">
+                        @else
+                        <img src="{{asset('storage/'. $character->image)}}" class="w-100" alt="{{ $character->name }}">
+                        @endif
             </div>
             <div class="col d-flex flex-column justify-content-center">
                 <p class=" text-light fs-3 mx-5 ">description: <br> {{$character->description}}</p>

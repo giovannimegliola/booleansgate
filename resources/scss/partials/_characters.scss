@@ -28,6 +28,11 @@
         color: red;
     }
 
+    .alert-delete {
+        width: 20%;
+        text-align: start;
+    }
+
 }
 
 #characters-show {
@@ -104,8 +109,9 @@
     background-image: url('https://img.itch.zone/aW1hZ2UvMTIxNjU4LzU2MDM4MS5wbmc=/315x250%23c/yrkGs9.png');
     background-position: center;
     background-size: cover;
-    height: calc(100vh - 70px);
+    height: 100%;
     width: 100%;
+    padding: 20px 0;
 
     main {
         height: 100%;

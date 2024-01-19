@@ -2,14 +2,15 @@
 @section('content')
     <main id="characters-edit">
         <section class="container w-50">
-            <h1>Create new character</h1>
-            <form action="{{ route('admin.characters.store') }}" enctype="multipart/form-data" method="POST">
+            <h1>Edit character</h1>
+            <form action="{{ route('admin.characters.update', $character->id) }}" enctype="multipart/form-data" method="POST">
                 @csrf
+                @method('PUT')
                 {{-- Name --}}
                 <div class="mb-3">
                     <label for="title">Name</label>
                     <input type="name" class="form-control @error('name') is-invalid @enderror" name="name"
-                        id="name" required minlength="3" maxlength="200" value="{{ old('name') }}">
+                        id="name" required minlength="3" maxlength="200" value="{{ old('name', $character->name) }}">
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -18,7 +19,7 @@
                 <div class="mb-3">
                     <label for="description">Description</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                        cols="2" rows="4">{{ old('description') }}
+                        cols="2" rows="4">{{ old('description', $character->description) }}
                     </textarea>
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -31,7 +32,7 @@
                     <select class="form-control w-25  @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
                         <option value="">Seleziona un tipo</option>
                         @foreach ($types as $type)
-                            <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                            <option value="{{ $type->id }}" {{ old('type_id', $character->type_id) == $type->id ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @endforeach
                     </select>
@@ -41,33 +42,35 @@
                 </div>
 
                 {{-- Items --}}
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <div class="form-group">
-                        <h6 class="text-ligth">Seleziona items</h6>
+                        <h6 class="text-white">Seleziona items</h6>
                         <div class="d-flex flex-wrap">
                             @foreach ($items as $item)
                                 <div class="col-md-3 text-light mx-3 form-check @error('items') is-invalid @enderror">
-                                    <input type="checkbox" class="form-check-input" name="items[]"
-                                        value="{{ $item->id }}"
-                                        {{ in_array($item->id, old('items', [])) ? 'checked' : '' }}>
+                                    @if($errors->any())
+                                    <input type="checkbox" class="form-check-input" name="items[]" value="{{ $item->id }}" {{ in_array($item->id, old('items', $character->items)) ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" class="form-check-input" name="items[]" value="{{ $item->id }}" {{ $character->items->contains($item->id) ? 'checked' : '' }}>  
+                                    @endif
                                     <label class="form-check-label">
                                         {{ $item->name }}
                                     </label>
                                 </div>
                             @endforeach
                         </div>
-
+            
                         @error('items')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                </div> --}}
+                </div>
 
                 {{-- Attack --}}
                 <div class="mb-3">
                     <label for="attack">Attack</label>
                     <textarea class="form-control w-50 @error('attack') is-invalid @enderror" name="attack" id="attack" cols="2"
-                        rows="1">{{ old('attack') }}
+                        rows="1">{{ old('attack', $character->attack) }}
                     </textarea>
                     @error('attack')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -78,7 +81,7 @@
                 <div class="mb-3">
                     <label for="defence">Defense</label>
                     <textarea class="form-control w-50 @error('defence') is-invalid @enderror" name="defence" id="defence" cols="2"
-                        rows="1">{{ old('defence') }}
+                        rows="1">{{ old('defence', $character->defence) }}
                     </textarea>
                     @error('defence')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -89,7 +92,7 @@
                 <div class="mb-3">
                     <label for="speed">Speed</label>
                     <textarea class="form-control w-50 @error('speed') is-invalid @enderror" name="speed" id="speed" cols="2"
-                        rows="1">{{ old('speed') }}
+                        rows="1">{{ old('speed', $character->speed) }}
                     </textarea>
                     @error('speed')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -100,7 +103,7 @@
                 <div class="mb-3">
                     <label for="life">Life</label>
                     <textarea class="form-control w-50 @error('life') is-invalid @enderror" name="life" id="life" cols="2"
-                        rows="1">{{ old('life') }}
+                        rows="1">{{ old('life', $character->life) }}
                     </textarea>
                     @error('life')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -110,12 +113,12 @@
                 {{-- Image --}}
                 <div class="d-flex">
                     <div class="me-3">
-                        <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
+                        <img id="uploadPreview" width="100" src='{{$character->image ? asset('storage/' . $character->image) : "https://via.placeholder.com/300x200"}}'>
                     </div>
                     <div class="mb-3">
                         <label for="image">Image</label>
                         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                            id="image" value="{{ old('image') }}">
+                            id="image" value="{{ old('image', $character->image) }}">
                         @error('image')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -8,7 +8,13 @@
         <a href="{{route('admin.characters.create')}}" class="btn btn-danger  fs-5 my-3">Create new Character</a>
 
         @if (session()->has('message'))
-        <div class="alert alert-success">{{ session()->get('message') }}</div>
+        <div class="d-flex justify-content-end">
+            <div class="alert-delete">
+                <div class="alert alert-success">{{ session()->get('message') }}</div>
+            </div>
+        </div>
+        
+        
         @endif
         <h1 class="text-center display-3 ">Characters</h1>
 
@@ -22,14 +28,19 @@
             <div class="carousel-inner">
                 @foreach ($characters as $index => $character)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        @if(!$character->image)
                         <img src="{{ Vite::asset('/public/image/' . $character->name . '.gif') }}" class="d-block w-100" alt="{{ $character->name }}">
+                        @else
+                        <img src="{{ asset('storage/' . $character->image) }}" class="d-block w-100 h-100" alt="{{ $character->name }}">
+                        @endif
+                        
                         <div class="carousel-caption d-none d-md-flex flex-column justify-content-between h-100 ">
                             <div>
                                 {{-- <p>{!! substr($character->description, 0, 100) . '...' !!}</p> --}}
                                 <p class="my-3 fs-4 py-3 description-text">{{$character->description}}</p>
                             </div>
                             <div>
-                                <h5>{{ $character->name }}</h5>
+                                <h3>{{ $character->name }}</h5>
                             <div class="d-flex justify-content-center ">
                             <a href="{{ route('admin.characters.show', $character->id) }}" class="btn btn-success mx-2 ">See details</a>
 
