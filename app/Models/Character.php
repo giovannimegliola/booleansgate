@@ -11,7 +11,7 @@ class Character extends Model
 
 
 
-    protected $fillable = ['name', 'type_id', 'description', 'attack', 'defence', 'speed', 'life'];
+    protected $fillable = ['name', 'type_id', 'image', 'description', 'attack', 'defence', 'speed', 'life'];
 
     public function type()
     {

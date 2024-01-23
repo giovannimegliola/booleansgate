@@ -43,6 +43,9 @@ class CharacterController extends Controller
             $formData['image'] = $path;
         }
         $newCharacter = Character::create($formData);
+        if ($request->has('items')) {
+            $newCharacter->items()->attach($request->items);
+        }
         return to_route('admin.characters.show', $newCharacter->id);
     }
 
@@ -60,7 +63,8 @@ class CharacterController extends Controller
     public function edit(Character $character)
     {
         $types = Type::all();
-        return view('admin.characters.edit', compact('character', 'types'));
+        $items = Item::all();
+        return view('admin.characters.edit', compact('character', 'types', 'items'));
     }
 
     /**
@@ -80,6 +84,11 @@ class CharacterController extends Controller
         }
         $character->fill($form_data);
         $character->update();
+        if ($request->has('items')) {
+            $character->items()->sync($request->items);
+        } else {
+            $character->items()->detach();
+        }
         return to_route('admin.characters.show', $character->id);
     }
 
