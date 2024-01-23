@@ -44,7 +44,7 @@ class CharacterSeeder extends Seeder
         // $temp_name = substr($url, strrpos($url, '/') + 1);
         // $name = substr($temp_name, 0, strpos($temp_name, '?')) . '.jpg';
         $path = 'images/' . $name . '.gif';
-        Storage::put('images/' . $name . '.gif', $contents);
+        Storage::put('public/images/' . $name . '.gif', $contents);
         return $path;
     }
 }
