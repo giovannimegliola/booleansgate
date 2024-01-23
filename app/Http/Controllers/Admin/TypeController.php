@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -16,7 +17,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::all();
-        return view('types.index', compact('types'));
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('types.create');
+        return view('admin.types.create');
     }
 
     /**
@@ -33,6 +34,8 @@ class TypeController extends Controller
     public function store(StoreTypeRequest $request)
     {
         $formData = $request->validated();
+        $slug = Str::slug($formData['name'], '-');
+        $formData['slug'] = $slug;
         if ($request->hasFile('image')) {
             $path = Storage::put('uploads', $formData['image']);
             $formData['image'] = $path;
@@ -46,7 +49,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        return view('types.show', compact('type'));
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -54,7 +57,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        return view('types.edit', compact('type'));
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -81,6 +84,9 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
+        if ($type->image) {
+            Storage::delete($type->image);
+        }
         $type->delete();
         return to_route('types.index')->with('message', "$type->name è stato cancellato!");
     }

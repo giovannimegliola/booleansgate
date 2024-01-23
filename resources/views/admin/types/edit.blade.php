@@ -2,13 +2,13 @@
 @section('content')
     <section class="container">
         <h1 class="my-3">Edit Types</h1>
-        <form action="{{ route('admin.types.update', $types->id) }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.types.update', $type->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="name">Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
-                    required maxlength="200" minlength="3" value="{{ old('name', $types->name) }}">
+                    required maxlength="200" minlength="3" value="{{ old('name', $type->name) }}">
                 @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -17,7 +17,7 @@
             <div class="mb-3">
                 <label for="description">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                    cols="30" rows="10">{{ old('description', $types->description) }}</textarea>
+                    cols="30" rows="10">{{ old('description', $type->description) }}</textarea>
                 @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
