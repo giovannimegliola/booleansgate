@@ -5,7 +5,7 @@
         "attack": "99",
         "defence": "99",
         "speed": "1",
-        "life": "1000",
+        "life": "100",
         "type_id": "1"
     },
     {
@@ -14,7 +14,7 @@
         "attack": "25",
         "defence": "25",
         "speed": "75",
-        "life": "567",
+        "life": "100",
         "type_id": "2"
     },
     {
@@ -23,7 +23,7 @@
         "attack": "49",
         "defence": "34",
         "speed": "15",
-        "life": "156",
+        "life": "100",
         "type_id": "3"
     },
     {
@@ -32,7 +32,7 @@
         "attack": "67",
         "defence": "12",
         "speed": "97",
-        "life": "398",
+        "life": "100",
         "type_id": "4"
     },
     {
@@ -41,7 +41,7 @@
         "attack": "32",
         "defence": "57",
         "speed": "24",
-        "life": "788",
+        "life": "100",
         "type_id": "5"
     }
 ]
