@@ -5,7 +5,8 @@
         "attack": "99",
         "defence": "99",
         "speed": "1",
-        "life": "1000"
+        "life": "1000",
+        "type_id": "1"
     },
     {
         "name": "Pietro Smusi",
@@ -13,7 +14,8 @@
         "attack": "25",
         "defence": "25",
         "speed": "75",
-        "life": "567"
+        "life": "567",
+        "type_id": "2"
     },
     {
         "name": "Alfonso Torrone",
@@ -21,7 +23,8 @@
         "attack": "49",
         "defence": "34",
         "speed": "15",
-        "life": "156"
+        "life": "156",
+        "type_id": "3"
     },
     {
         "name": "Ronaldo da Fiano Romano",
@@ -29,7 +32,8 @@
         "attack": "67",
         "defence": "12",
         "speed": "97",
-        "life": "398"
+        "life": "398",
+        "type_id": "4"
     },
     {
         "name": "Lamberto Lasagna",
@@ -37,6 +41,7 @@
         "attack": "32",
         "defence": "57",
         "speed": "24",
-        "life": "788"
+        "life": "788",
+        "type_id": "5"
     }
 ]

@@ -10,12 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 200);
-            $table->text('desc');
-            $table->string('image', 255)->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('nickname')->after('name');
         });
     }
 
@@ -24,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('types');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('nickname');
+        });
     }
 };

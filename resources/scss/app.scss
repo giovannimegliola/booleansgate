@@ -1,6 +1,7 @@
 @use './partials/variables' as *;
 @use './partials/login' as *;
 @use './partials/register' as *;
+@use './partials/characters' as*;
 
 $fa-font-path: "../fonts/webfonts" !default;
 
@@ -9,8 +10,16 @@ $fa-font-path: "../fonts/webfonts" !default;
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 @import '~bootstrap/scss/bootstrap';
 
 h1 {
     color: $text-color;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
 }
