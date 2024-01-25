@@ -35,7 +35,7 @@ class ItemSeeder extends Seeder
     {
         $contents = file_get_contents(__DIR__ . '/items/' . $name . '.gif');
         $path = 'img/' . $name . '.gif';
-        Storage::put('img/' . $name . 'gif', $contents);
+        Storage::put('img/' . $name . '.gif', $contents);
         return $path;
     }
 }

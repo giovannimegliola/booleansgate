@@ -23,9 +23,9 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-0">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
                         <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 150px">
                             <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -33,8 +33,7 @@
                             </g>
                         </svg>
                     </div> 
-                    {{-- config('app.name', 'Laravel') --}}
-                </a>
+                </a> --}}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,17 +43,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                <i class="fas fa-align-left"></i>
+                                <span>Toggle Sidebar</span>
+                            </button>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/characters') }}">{{ __('Characters') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/items') }}">{{ __('Items') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/types') }}">{{ __('Types') }}</a>
-                        </li>
+                        
                     </ul> 
 
                     <!-- Right Side Of Navbar -->
@@ -93,9 +87,16 @@
             </div>
         </nav>
 
-        <main class="">
+        <div class="wrapper">
+        @include('partials.sidebar')
+        <!-- Page Content  -->
+        <div id="content">
+            <main>
             @yield('content')
-        </main>
+            </main>
+        </div>
+    </div>
+        
     </div>
 </body>
 
