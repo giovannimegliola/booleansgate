@@ -2,6 +2,9 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
+import "./chart.js";
+import "./chartTension.js";
+import "./chartPie.js";
 
 //Image preview on create
 const previewImage = document.getElementById("image");
@@ -19,12 +22,3 @@ if (previewImage) {
         };
     });
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    var sidebarCollapse = document.getElementById("sidebarCollapse");
-    var sidebar = document.getElementById("sidebar");
-
-    sidebarCollapse.addEventListener("click", function () {
-        sidebar.classList.toggle("active");
-    });
-});

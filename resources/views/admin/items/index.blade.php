@@ -19,7 +19,7 @@
 
         <div class="row">
             @foreach ($items as $item)
-            <div class="col-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my_slide">
                     <p class="my-3 py-3 description-text">{{$item->description}}</p>
                     <div class="img_container">

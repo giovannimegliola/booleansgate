@@ -1,12 +1,12 @@
 #register{
-    background: #14355e;
+background: #14355e;
 margin: 0;
 overflow: hidden;
-
+height: calc(100vh - 56px);
 
 .container{
-    top:20%;
-    left:10%;
+    top:30%;
+    left:22%;
 }
 $bubble-count: 50;
 $sway-type: "sway-left-to-right", "sway-right-to-left";
