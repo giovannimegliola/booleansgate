@@ -8,16 +8,39 @@ use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::all();
-        return view('admin.items.index', compact('items'));
+        $category = $request->query('category');
+        if (!empty($category)) {
+            switch ($category) {
+                case 'all':
+                    $items = Item::all();
+                    break;
+                case 'Simple Melee':
+                    $items = Item::where('category', 'Simple Melee')->get();
+                    break;
+                case 'Simple Ranged':
+                    $items = Item::where('category', 'Simple Ranged')->get();
+                    break;
+                case 'Martial Melee':
+                    $items = Item::where('category', 'Martial Melee')->get();
+                    break;
+                case 'Martial Ranged':
+                    $items = Item::where('category', 'Martial Ranged')->get();
+                    break;
+                default:
+                    $items = Item::all();
+                    break;
+            }
+        }
+        return view('admin.items.index', compact('items', 'category'));
     }
 
     /**

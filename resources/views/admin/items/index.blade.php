@@ -4,7 +4,7 @@
 
 @section('content')
 <main id="items">
-    <section class="container-fluid text-end">
+    <section class="container-fluid text-center">
         <a href="{{route('admin.items.create')}}" class="btn btn-danger fs-5 my-5">Create new Items</a>
 
         @if (session()->has('message'))
@@ -16,6 +16,30 @@
         @endif
 
         <h1 class="text-center display-3 ">Items</h1>
+
+        <div class="pb-5">
+            <form action="{{route('admin.items.index')}}" method="GET">
+                <label class="form-label text-light" for="category">
+                    Search for Category
+                </label>
+                <select class="form-select text-center w-25 m-auto" name="category" id="category">
+                    <option value="all">All</option>
+                    <option {{ $category == "Simple Melee" ? 'selected ': '' }} value="Simple Melee">Simple Melee</option>
+                    <option {{ $category == "Simple Ranged" ? 'selected ': '' }} value="Simple Ranged">Simple Ranged</option>
+                    <option {{ $category == "Martial Melee" ? 'selected ': '' }} value="Martial Melee">Martial Melee</option>
+                    <option {{ $category == "Martial Ranged" ? 'selected ': '' }} value="Martial Ranged">Martial Ranged</option> 
+                    </option>
+                </select>
+                <button type="submit" class="btn btn-success mt-3">Search</button>
+            </form>
+        </div>
+
+        <div class="mb-5">
+            <h2 class="text-danger">Results</h2>
+            <p class="text-light">
+                {{count($items)}} results found
+            </p>
+        </div>
 
         <div class="row">
             @foreach ($items as $item)
