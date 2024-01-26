@@ -16,7 +16,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::paginate(6);
         return view('admin.types.index', compact('types'));
     }
 
@@ -36,12 +36,12 @@ class TypeController extends Controller
         $formData = $request->validated();
         $slug = Str::slug($formData['name'], '-');
         $formData['slug'] = $slug;
-        if ($request->hasFile('image')) {
-            $path = Storage::put('uploads', $formData['image']);
-            $formData['image'] = $path;
-        }
+        // if ($request->hasFile('image')) {
+        //     $path = Storage::put('uploads', $formData['image']);
+        //     $formData['image'] = $path;
+        // }
         $newType = Type::create($formData);
-        return to_route('admin.types.show', $newType->id);
+        return to_route('admin.types.index');
     }
 
     /**
@@ -75,7 +75,7 @@ class TypeController extends Controller
         }
         $type->fill($formData);
         $type->update();
-        return to_route('admin.types.show', $type->id);
+        return to_route('admin.types.index');
 
     }
 
@@ -88,6 +88,6 @@ class TypeController extends Controller
             Storage::delete($type->image);
         }
         $type->delete();
-        return to_route('types.index')->with('message', "$type->name è stato cancellato!");
+        return to_route('admin.types.index')->with('message', "$type->name è stato cancellato!");
     }
 }

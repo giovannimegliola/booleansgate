@@ -23,6 +23,7 @@ class StoreTypeRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200',
+            'image' => 'nullable',
             'desc' => 'required'
         ];
     }

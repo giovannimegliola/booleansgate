@@ -4,6 +4,8 @@
 @use './partials/characters' as*;
 @use './partials/sidebar' as*;
 @use './partials/items' as*;
+@use './partials/arenas' as*;
+@use './partials/type' as*;
 $fa-font-path: "../fonts/webfonts" !default;
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";

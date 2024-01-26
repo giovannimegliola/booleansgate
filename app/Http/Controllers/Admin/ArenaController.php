@@ -87,6 +87,6 @@ class ArenaController extends Controller
             Storage::delete($arena->image);
         }
         $arena->delete();
-        return to_route('admin.items.index')->with('message', "The arena : '$arena->name' has been deleted");
+        return to_route('admin.arenas.index')->with('message', "The arena : '$arena->name' has been deleted");
     }
 }

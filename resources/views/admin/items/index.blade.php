@@ -21,7 +21,7 @@
             @foreach ($items as $item)
             <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my_slide">
-                    <p class="my-3 py-3 description-text">{{$item->description}}</p>
+                    <p class="my-3 py-3 description-text">{{ substr($item->description,0, 23) . '...' }}</p>
                     <div class="img_container">
                         @if(!$item->image)
                             <img src="{{ Vite::asset('/public/img/' . $item->name . '.gif') }}" class="d-block w-100" alt="{{ $item->name }}">

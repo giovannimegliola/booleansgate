@@ -23,7 +23,7 @@ class StoreArenaRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:arenas',
-            'image' => 'required|image',
+            'image' => 'required',
         ];
     }
 
@@ -33,7 +33,6 @@ class StoreArenaRequest extends FormRequest
             'name.required' => 'Field ":attribute" is required',
             'name.unique' => 'Field ":attribute" is already chosen',
             'image.required' => 'Field ":attribute" is required',
-            'image.image' => 'Field ":attribute" must be an image'
         ];
     }
 }

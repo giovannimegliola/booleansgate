@@ -4,10 +4,44 @@
 
 @section('content')
 <main id="arenas">
-    <section class="container py-4 text-end">
+    <section class="container py-4 text-center">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <button class="btn btn-danger my-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create Arenas</button>
+
+        <div class="offcanvas offcanvas-bottom text-bg-dark h-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Create Arena</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form class="w-50 m-auto" action="{{route('admin.arenas.store')}}" method="POST">
+                @csrf
+                <div class="mb-3 mx-4">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3 mx-4">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </form>
+        </div>
+        </div>
 
         @if (session()->has('message'))
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-center">
             <div class="alert-delete">
                 <div class="alert alert-success">{{ session()->get('message') }}</div>
             </div>
@@ -30,13 +64,13 @@
                         @if(!$arena->image)
                         <img src="{{ Vite::asset('/public/image/' . $character->name . '.gif') }}" class="d-block w-100" alt="{{ $character->name }}">
                         @else
-                        <img src="{{ asset('storage/' . $arena->image) }}" class="d-block w-100 h-100" alt="{{ $arena->name }}">
+                        <img src="{{ asset('storage/' . $arena->image) }}" class="d-block  h-100" alt="{{ $arena->name }}">
                         @endif
                         
                         <div class="carousel-caption d-none d-md-flex flex-column justify-content-between h-100 ">
                             <div>
-                                <h3>{{ $arena->name }}</h3>
-                            <div class="d-flex justify-content-end mb-4">
+                                <h3 class="pt-3">{{ $arena->name }}</h3>
+                            <div class="d-flex justify-content-center mb-4">
 
                                  <form action="{{route('admin.arenas.destroy', $arena->id)}}" method="POST">
                                 @csrf
