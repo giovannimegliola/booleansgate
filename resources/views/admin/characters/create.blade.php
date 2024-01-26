@@ -3,12 +3,21 @@
 <main id="characters-create">
     <section class="container w-50">
         <h1>Create new character</h1>
+        @if ($errors->any())
+                <div class="alert alert-danger w-50 m-auto my-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <form action="{{ route('admin.characters.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
         {{-- Name --}}
      <div class="mb-3">
             <label class="text-light" for="title">Name</label>
-            <input type="name" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
+            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                 required minlength="3" maxlength="200" value="{{ old('name') }}">
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -62,8 +71,7 @@
     {{-- Attack --}}
     <div class="mb-3">
         <label class="text-light" for="attack">Attack</label>
-        <textarea class="form-control w-50 @error('attack') is-invalid @enderror" name="attack" id="attack" cols="2" rows="1">{{ old('attack') }}
-        </textarea>
+        <input type="number" class="form-control w-50 @error('attack') is-invalid @enderror" value="{{old('attack')}}" name="attack" id="attack" required>
         @error('attack')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -72,8 +80,7 @@
     {{--Defense --}}
     <div class="mb-3">
         <label class="text-light" for="defence">Defense</label>
-        <textarea class="form-control w-50 @error('defence') is-invalid @enderror" name="defence" id="defence" cols="2" rows="1">{{ old('defence') }}
-        </textarea>
+        <input type="number" class="form-control w-50 @error('defence') is-invalid @enderror" value="{{ old('defence') }}" name="defence" id="defence" required>
         @error('defence')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -82,8 +89,7 @@
     {{-- Speed --}}
     <div class="mb-3">
         <label class="text-light" for="speed">Speed</label>
-        <textarea class="form-control w-50 @error('speed') is-invalid @enderror" name="speed" id="speed" cols="2" rows="1">{{ old('speed') }}
-        </textarea>
+        <input type="number" class="form-control w-50 @error('speed') is-invalid @enderror" value="{{ old('speed') }}" name="speed" id="speed" required >
         @error('speed')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -92,8 +98,7 @@
     {{-- Life --}}
     <div class="mb-3">
         <label class="text-light" for="life">Life</label>
-        <textarea class="form-control w-50 @error('life') is-invalid @enderror" name="life" id="life" cols="2" rows="1">{{ old('life') }}
-        </textarea>
+        <input type="number" class="form-control w-50 @error('life') is-invalid @enderror" value="{{ old('life') }}" name="life" id="life" required>
         @error('life')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror

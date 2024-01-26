@@ -102,6 +102,6 @@ class CharacterController extends Controller
         }
 
         $character->delete();
-        return to_route('admin.characters.index')->with('message', "$character->name è stato cancellato!");
+        return to_route('admin.characters.index')->with('message', "'$character->name' was deleted successfully!");
     }
 }

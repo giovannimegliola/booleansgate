@@ -3,6 +3,15 @@
     <main id="items-edit">
         <section class="container w-50">
             <h1 class="my-3">Edit Item</h1>
+             @if ($errors->any())
+            <div class="alert alert-danger w-50 m-auto my-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{route('admin.items.update', $item->id)}}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('PUT')
@@ -24,7 +33,7 @@
                 </div>
                 <div class="mb-3 w-50">
                     <label for="category">Category</label>
-                    <input class="form-control @error('category') is-invalid @enderror" name="category" id="category"
+                    <input required maxlength="100" class="form-control @error('category') is-invalid @enderror" name="category" id="category"
                           cols="30" rows="10" value="{{old('category', $item->category)}}">
                     @error('category')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -32,7 +41,7 @@
                 </div>
                 <div class="mb-3 w-50">
                     <label for="type">Type</label>
-                    <input class="form-control @error('type') is-invalid @enderror" name="type" id="type"
+                    <input required maxlength="100" class="form-control @error('type') is-invalid @enderror" name="type" id="type"
                           cols="30" rows="10" value="{{old('type', $item->type)}}">
                     @error('type')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -40,7 +49,7 @@
                 </div>
                 <div class="mb-3 w-50">
                     <label for="weight">Weight</label>
-                    <input class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight"
+                    <input required maxlength="10" class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight"
                           cols="30" rows="10" value="{{old('weight', $item->type)}}">
                     @error('weight')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -48,7 +57,7 @@
                 </div>
                 <div class="mb-3 w-50">
                     <label for="cost">Cost</label>
-                    <input class="form-control @error('cost') is-invalid @enderror" name="cost" id="cost"
+                    <input required maxlength="120" class="form-control @error('cost') is-invalid @enderror" name="cost" id="cost"
                           cols="30" rows="10" value="{{old('cost', $item->cost)}}">
                     @error('cost')
                         <div class="invalid-feedback">{{ $message }}</div>

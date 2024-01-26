@@ -2,6 +2,15 @@
 @section('content')
     <section class="container">
         <h1 class="my-3">Edit Types</h1>
+         @if ($errors->any())
+            <div class="alert alert-danger w-50 m-auto my-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.types.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="mb-3">

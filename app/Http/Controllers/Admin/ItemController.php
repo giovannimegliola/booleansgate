@@ -17,30 +17,18 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-        $category = $request->query('category');
-        if (!empty($category)) {
-            switch ($category) {
-                case 'all':
-                    $items = Item::all();
-                    break;
-                case 'Simple Melee':
-                    $items = Item::where('category', 'Simple Melee')->get();
-                    break;
-                case 'Simple Ranged':
-                    $items = Item::where('category', 'Simple Ranged')->get();
-                    break;
-                case 'Martial Melee':
-                    $items = Item::where('category', 'Martial Melee')->get();
-                    break;
-                case 'Martial Ranged':
-                    $items = Item::where('category', 'Martial Ranged')->get();
-                    break;
-                default:
-                    $items = Item::all();
-                    break;
-            }
-        }
-        return view('admin.items.index', compact('items', 'category'));
+        $category = $request->query('category', 'all');
+        $name = $request->query('name');
+
+        $items = Item::when($category !== 'all', function ($query) use ($category) {
+            return $query->where('category', $category);
+        })
+            ->when($name, function ($query) use ($name) {
+                return $query->where('name', 'like', "%$name%");
+            })
+            ->get();
+
+        return view('admin.items.index', compact('items', 'category', 'name'));
     }
 
     /**
@@ -60,7 +48,7 @@ class ItemController extends Controller
         $slug = Str::slug($formData['name'], '-');
         $formData['slug'] = $slug;
         if ($request->hasFile('image')) {
-            $path = Storage::put('uploads', $formData['image']);
+            $path = Storage::put('img', $formData['image']);
             $formData['image'] = $path;
         }
         $newItem = Item::create($formData);
@@ -111,6 +99,6 @@ class ItemController extends Controller
             Storage::delete($item->image);
         }
         $item->delete();
-        return to_route('admin.items.index')->with('message', "Il prodotto : '$item->name' è stato eliminato");
+        return to_route('admin.items.index')->with('message', "Item : '$item->name' was deleted successfully!");
     }
 }

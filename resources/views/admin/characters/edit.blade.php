@@ -3,13 +3,22 @@
     <main id="characters-edit">
         <section class="container w-50">
             <h1>Edit character</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger w-50 m-auto my-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('admin.characters.update', $character->id) }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('PUT')
                 {{-- Name --}}
                 <div class="mb-3">
                     <label for="title">Name</label>
-                    <input type="name" class="form-control @error('name') is-invalid @enderror" name="name"
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                         id="name" required minlength="3" maxlength="200" value="{{ old('name', $character->name) }}">
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -69,9 +78,7 @@
                 {{-- Attack --}}
                 <div class="mb-3">
                     <label for="attack">Attack</label>
-                    <textarea class="form-control w-50 @error('attack') is-invalid @enderror" name="attack" id="attack" cols="2"
-                        rows="1">{{ old('attack', $character->attack) }}
-                    </textarea>
+                    <input type="number" class="form-control w-50 @error('attack') is-invalid @enderror" name="attack" value="{{ old('attack', $character->attack) }}">
                     @error('attack')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -80,9 +87,7 @@
                 {{-- Defense --}}
                 <div class="mb-3">
                     <label for="defence">Defense</label>
-                    <textarea class="form-control w-50 @error('defence') is-invalid @enderror" name="defence" id="defence" cols="2"
-                        rows="1">{{ old('defence', $character->defence) }}
-                    </textarea>
+                    <input type="number" required class="form-control w-50 @error('defence') is-invalid @enderror" name="defence" id="defence" value="{{ old('defence', $character->defence) }}">
                     @error('defence')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -91,9 +96,7 @@
                 {{-- Speed --}}
                 <div class="mb-3">
                     <label for="speed">Speed</label>
-                    <textarea class="form-control w-50 @error('speed') is-invalid @enderror" name="speed" id="speed" cols="2"
-                        rows="1">{{ old('speed', $character->speed) }}
-                    </textarea>
+                    <input type="number" required class="form-control w-50 @error('speed') is-invalid @enderror" name="speed" id="speed" value="{{ old('speed', $character->speed) }}">
                     @error('speed')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -102,9 +105,7 @@
                 {{-- Life --}}
                 <div class="mb-3">
                     <label for="life">Life</label>
-                    <textarea class="form-control w-50 @error('life') is-invalid @enderror" name="life" id="life" cols="2"
-                        rows="1">{{ old('life', $character->life) }}
-                    </textarea>
+                    <input type="number" required class="form-control w-50 @error('life') is-invalid @enderror" name="life" id="life" value="{{ old('life', $character->life) }}">
                     @error('life')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

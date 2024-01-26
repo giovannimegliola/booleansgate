@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $characters = Character::with('type')->paginate(3);
+        $characters = Character::paginate(3);
         return view('admin.dashboard', compact('characters'));
         ;
     }

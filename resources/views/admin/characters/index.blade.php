@@ -4,18 +4,16 @@
 
 @section('content')
 <main id="characters">
-    <section class="container text-end">
-        <a href="{{route('admin.characters.create')}}" class="btn btn-danger  fs-5 my-3">Create new Character</a>
-
+    <section class="container text-center">
         @if (session()->has('message'))
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-center">
             <div class="alert-delete">
                 <div class="alert alert-success">{{ session()->get('message') }}</div>
             </div>
-        </div>
-        
-        
+        </div>        
         @endif
+        <a href="{{route('admin.characters.create')}}" class="btn btn-danger  fs-5 my-3">Create new Character</a>
+
         <h1 class="text-center display-3 ">Characters</h1>
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <main id="items-create">
-        <section class="container w-50">
+        <section class="container w-50 pb-3">
             <h1 class="my-3">Create Item</h1>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -39,28 +39,28 @@
                 </div>
                 <div class="mb-3 w-50">
                     <label for="category">Category</label>
-                    <input type="text" class="form-control @error('category') is-invalid @enderror" name="category" id="category">
+                    <input required maxlength="100" type="text" class="form-control @error('category') is-invalid @enderror" name="category" id="category">
                     @error('category')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3  w-50">
                     <label for="type">Type</label>
-                    <input type="text" class="form-control @error('type') is-invalid @enderror" name="type" id="type">
+                    <input required maxlength="100" type="text" class="form-control @error('type') is-invalid @enderror" name="type" id="type">
                     @error('type')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3  w-50">
                     <label for="weight">Weight</label>
-                    <input type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight">
+                    <input required maxlength="10" type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight">
                     @error('weight')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 w-50">
                     <label for="weight">Cost</label>
-                    <input type="text" class="form-control @error('cost') is-invalid @enderror" name="cost" id="cost">
+                    <input required maxlength="20" type="text" class="form-control @error('cost') is-invalid @enderror" name="cost" id="cost">
                     @error('cost')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

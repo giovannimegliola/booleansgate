@@ -17,7 +17,9 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 @import '~bootstrap/scss/bootstrap';
 
-body,
+body{
+    font-family: 'VT323', monospace;
+}
 h1 {
     color: $text-color;
 }
@@ -44,4 +46,17 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100vh - 56px);
+    overflow: hidden;
+    h2 {
+        font-size: 4em;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        color: rgb(156, 226, 16);
+        padding: 0 30px;
+    }
+}
+
+.my-active {
+    background-color: rgba(66, 65, 65, 0.506) !important;
 }

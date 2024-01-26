@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TypeController extends Controller
@@ -21,14 +20,6 @@ class TypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin.types.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTypeRequest $request)
@@ -36,28 +27,8 @@ class TypeController extends Controller
         $formData = $request->validated();
         $slug = Str::slug($formData['name'], '-');
         $formData['slug'] = $slug;
-        // if ($request->hasFile('image')) {
-        //     $path = Storage::put('uploads', $formData['image']);
-        //     $formData['image'] = $path;
-        // }
         $newType = Type::create($formData);
-        return to_route('admin.types.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Type $type)
-    {
-        return view('admin.types.show', compact('type'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Type $type)
-    {
-        return view('admin.types.edit', compact('type'));
+        return to_route('admin.types.index')->with('message', "Type : '$newType->name' created successfully");
     }
 
     /**
@@ -66,16 +37,9 @@ class TypeController extends Controller
     public function update(UpdateTypeRequest $request, Type $type)
     {
         $formData = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($type->image) {
-                Storage::delete($type->image);
-            }
-            $path = Storage::put('uploads', $formData['image']);
-            $formData['image'] = $path;
-        }
         $type->fill($formData);
         $type->update();
-        return to_route('admin.types.index');
+        return to_route('admin.types.index')->with('message', "Type : '$type->name' updated' successfully");
 
     }
 
@@ -84,10 +48,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        if ($type->image) {
-            Storage::delete($type->image);
-        }
         $type->delete();
-        return to_route('admin.types.index')->with('message', "$type->name è stato cancellato!");
+        return to_route('admin.types.index')->with('message', "Type '$type->name' was deleted successfully!");
     }
 }

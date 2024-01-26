@@ -5,34 +5,41 @@
 @section('content')
 <main id="items">
     <section class="container-fluid text-center">
-        <a href="{{route('admin.items.create')}}" class="btn btn-danger fs-5 my-5">Create new Items</a>
-
         @if (session()->has('message'))
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-center mt-4">
             <div class="alert-delete">
                 <div class="alert alert-success">{{ session()->get('message') }}</div>
             </div>
         </div>
         @endif
-
-        <h1 class="text-center display-3 ">Items</h1>
+        <a href="{{route('admin.items.create')}}" class="btn btn-danger fs-5 my-5">Create new Items</a>
 
         <div class="pb-5">
-            <form action="{{route('admin.items.index')}}" method="GET">
-                <label class="form-label text-light" for="category">
-                    Search for Category
-                </label>
-                <select class="form-select text-center w-25 m-auto" name="category" id="category">
-                    <option value="all">All</option>
-                    <option {{ $category == "Simple Melee" ? 'selected ': '' }} value="Simple Melee">Simple Melee</option>
-                    <option {{ $category == "Simple Ranged" ? 'selected ': '' }} value="Simple Ranged">Simple Ranged</option>
-                    <option {{ $category == "Martial Melee" ? 'selected ': '' }} value="Martial Melee">Martial Melee</option>
-                    <option {{ $category == "Martial Ranged" ? 'selected ': '' }} value="Martial Ranged">Martial Ranged</option> 
-                    </option>
-                </select>
+            <form class="d-flex justify-content-center align-items-end" action="{{route('admin.items.index')}}" method="GET">
+                <div>
+                    <label class="form-label text-light" for="category">
+                        Search for Category
+                    </label>
+                    <select class="form-select text-center" name="category" id="category">
+                        <option value="all">All</option>
+                        <option {{ $category == "Simple Melee" ? 'selected ': '' }} value="Simple Melee">Simple Melee</option>
+                        <option {{ $category == "Simple Ranged" ? 'selected ': '' }} value="Simple Ranged">Simple Ranged</option>
+                        <option {{ $category == "Martial Melee" ? 'selected ': '' }} value="Martial Melee">Martial Melee</option>
+                        <option {{ $category == "Martial Ranged" ? 'selected ': '' }} value="Martial Ranged">Martial Ranged</option>
+                        </option>
+                    </select>
+                </div>
+                <div class="px-4">
+                    <label class="form-label text-light" for="name">
+                        Search for Name
+                    </label>
+                    <input value="{{old('name', $name)}}" type="text" class="form-control text-center" name="name" id="name">
+                </div>
                 <button type="submit" class="btn btn-success mt-3">Search</button>
             </form>
         </div>
+
+        <h1 class="text-center display-3 ">Items</h1>
 
         <div class="mb-5">
             <h2 class="text-danger">Results</h2>
@@ -41,7 +48,7 @@
             </p>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach ($items as $item)
             <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my_slide">

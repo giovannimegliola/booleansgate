@@ -34,7 +34,7 @@ class ArenaSeeder extends Seeder
         // $temp_name = substr($url, strrpos($url, '/') + 1);
         // $name = substr($temp_name, 0, strpos($temp_name, '?')) . '.jpg';
         $path = 'arenas/' . $name . '.gif';
-        Storage::put('public/arenas/' . $name . '.gif', $contents);
+        Storage::put('arenas/' . $name . '.gif', $contents);
         return $path;
     }
 }

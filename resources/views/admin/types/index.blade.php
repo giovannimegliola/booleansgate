@@ -2,20 +2,29 @@
 @section('title', 'Types')
 @section('content')
     <main id="types">
-         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        <section class="container-fluid text-center">
+            @if ($errors->any())
+               <div class="alert alert-danger w-50 m-auto my-4">
+                   <ul>
+                       @foreach ($errors->all() as $error)
+                           <li>{{ $error }}</li>
+                       @endforeach
+                   </ul>
+               </div>
+           @endif
+
+           @if (session()->has('message'))
+            <div class="d-flex justify-content-center my-4">
+                <div class="alert-delete">
+                    <div class="alert alert-success">{{ session()->get('message') }}</div>
+                </div>
             </div>
-        @endif
-        <section class="container-fluid py-5 text-center">
+            @endif
+            
+            <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create new Type</button>
 
-        <h1 class="text-center display-3 ">Types</h1>
+            <h1 class="text-center display-3 py-4">Types</h1>
 
-            <button class="btn btn-danger my-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create new Type</button>
 
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
@@ -27,24 +36,19 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input maxlength="100" required type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="desc" name="desc" rows="10"></textarea>
+                        <textarea required type="text" class="form-control" id="desc" name="desc" rows="10"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             </div>
 
-            @if (session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
-            @endif
-            <table class="table w-75 m-auto">
-                <thead>
+            <table class="table table-dark table-hover table-borderless w-75 m-auto">
+                <thead class="table-success fs-4">
                     <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
@@ -58,11 +62,11 @@
                         <th scope="row">
                             {{ $type->id}}
                         </th>
-                        <td>
+                        <td class="fs-5 text-success">
                             {{ $type->name}}
                         </td>
                         <td>
-                            {{ substr($type->desc, 0, 50) . '...'}}
+                            {{ substr($type->desc, 0, 50) . '...' }}
                         </td>
                         <td class="d-flex justify-content-center align-items-center">
                             <form action="{{route('admin.types.destroy', $type->id)}}" method="POST">
@@ -89,7 +93,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="desc" class="form-label">Description</label>
-                                            <textarea type="text" class="form-control" id="desc" name="desc" rows="20"></textarea>
+                                            <textarea type="text" class="form-control" id="desc" name="desc" rows="10"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

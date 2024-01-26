@@ -6,8 +6,13 @@
 <main id="arenas">
     <section class="container py-4 text-center">
 
-        <h1 class="text-center display-3 ">Arenas</h1>
-
+        @if (session()->has('message'))
+        <div class="d-flex justify-content-center mt-4">
+            <div class="alert-delete">
+                <div class="alert alert-success">{{ session()->get('message') }}</div>
+            </div>
+        </div>
+        @endif
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -20,6 +25,8 @@
         @endif
 
         <button class="btn btn-danger my-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create Arenas</button>
+
+        <h1 class="text-center display-3 ">Arenas</h1>
 
         <div class="offcanvas offcanvas-bottom text-bg-dark h-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
@@ -42,16 +49,6 @@
             </form>
         </div>
         </div>
-
-        @if (session()->has('message'))
-        <div class="d-flex justify-content-center">
-            <div class="alert-delete">
-                <div class="alert alert-success">{{ session()->get('message') }}</div>
-            </div>
-        </div>
-        
-        
-        @endif
 
 
         <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
