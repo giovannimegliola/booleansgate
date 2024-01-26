@@ -12,7 +12,10 @@
             </div>
         @endif
         <section class="container-fluid py-5 text-center">
-            <button class="btn btn-primary my-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create new Type</button>
+
+        <h1 class="text-center display-3 ">Types</h1>
+
+            <button class="btn btn-danger my-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create new Type</button>
 
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">

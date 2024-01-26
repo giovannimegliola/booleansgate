@@ -6,6 +6,9 @@
 <main id="arenas">
     <section class="container py-4 text-center">
 
+        <h1 class="text-center display-3 ">Arenas</h1>
+
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -49,7 +52,6 @@
         
         
         @endif
-        <h1 class="text-center display-3 ">Arenas</h1>
 
 
         <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
