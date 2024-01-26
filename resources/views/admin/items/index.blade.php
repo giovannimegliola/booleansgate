@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Comics')
+@section('title', 'Items')
 
 @section('content')
 <main id="card-content">
