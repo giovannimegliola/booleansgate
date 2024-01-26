@@ -3,40 +3,46 @@
 @section('title', 'Items')
 
 @section('content')
-<main id="card-content">
-    <section class="container py-5" >
+<main id="items">
+    <section class="container-fluid text-end">
+        <a href="{{route('admin.items.create')}}" class="btn btn-danger fs-5 my-5">Create new Items</a>
 
         @if (session()->has('message'))
-        <div class="alert alert-success ">
-            {{session('message')}}
+        <div class="d-flex justify-content-end">
+            <div class="alert-delete">
+                <div class="alert alert-success">{{ session()->get('message') }}</div>
+            </div>
         </div>
         @endif
-        <a href="{{ route('admin.items.create') }}" class="btn btn-primary my-3">Create a new item</a>
-        <h1 class="text-light py-3">List Items</h1>
-        <div class="row gy-4">
-          @foreach ($items as $item)
-            <div class="col-12 col-md-4 col-lg-2">
-                <div class="card bg-trasparent text-light border-1 border-light h-100">
-                    <div class="card-body d-flex flex-column justify-content-between ">
-                        <h5 class="card-title">{{$item->name}}</h5>
-                        <h6>slug:{{$item->slug}} | category:{{$item->category}} | type:{{$item->type}}</h6>
-                        <span>weight:{{$item->weight}} </span> <span>cost: {{$item->cost}}</span>
-                        <p class="card-text">{!! substr($item->description, 0, 100) . '...' !!}</p>
-                        <a href="{{route('admin.items.show', $item->id)}}" class="btn btn-primary">Vedi dettaglio</a>
-                        <a href="{{ route('admin.items.edit', $item->id) }}" class="btn btn-secondary">Modifica</a>
-                        <form action="{{route('admin.items.destroy',$item->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="cancel-button btn btn-danger" data-item-title="{{$item->name}}">Cancella</button>
-                        </form>
 
+        <h1 class="text-center display-3 ">Items</h1>
+
+        <div class="row">
+            @foreach ($items as $item)
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="my_slide">
+                    <p class="my-3 py-3 description-text">{{$item->description}}</p>
+                    <div class="img_container">
+                        @if(!$item->image)
+                            <img src="{{ Vite::asset('/public/img/' . $item->name . '.gif') }}" class="d-block w-100" alt="{{ $item->name }}">
+                            @else
+                            <img class="w-100" src="{{ asset('storage/' . $item->image) }}" class="d-block w-100" alt="{{ $item->name }}">
+                            @endif
+                    </div>
+                    <h3>{{$item->name}}</h3>
+                     <div class="d-flex justify-content-center ">
+                            <a href="{{ route('admin.items.show', $item->id) }}" class="btn btn-success mx-2 ">See details</a>
+
+                                <form action="{{route('admin.items.destroy', $item->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="cancel-button btn btn-danger mx-2" data-item-title="{{$item->name}}"><i class="fa-solid fa-trash"></i></button>
+                                </form>
                     </div>
                 </div>
             </div>
-
-          @endforeach
+            @endforeach
         </div>
-
     </section>
 </main>
 

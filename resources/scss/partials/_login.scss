@@ -1,12 +1,12 @@
 #login{
-    background: #1a1e23;
+background: #1a1e23;
 margin: 0;
 overflow: hidden;
-
+height: calc(100vh - 56px);
 
 .container{
-    top:20%;
-    left:10%;
+    top:30%;
+    left:22%;
 }
 $bubble-count: 50;
 $sway-type: "sway-left-to-right", "sway-right-to-left";
