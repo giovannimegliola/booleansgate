@@ -49,8 +49,10 @@
                             </button>
                         </li>
                         
-                    </ul> 
-
+                    </ul>
+                    
+                    <h1 id="logo">BooleansGate</h1>
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav">
                         <!-- Authentication Links -->

@@ -2,14 +2,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Hi,<br>
-                @auth
-                {{ auth()->user()->name }}
-                @endauth
-                @guest
-                    Guest
-                @endguest    
-                </h3>
+                <img src="{{asset('/storage/images/Ronaldo da Fiano Romano.gif')}}" alt="logo" id="logo-sidebar">
             </div>
 
             <ul class="list-unstyled components">

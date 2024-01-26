@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <h2 class="display-5 fw-bold text-center my-4">
+<div class="container-fluid" id="dash">
+    <h2 class="display-5 fw-bold text-center pt-5 mb-5">
         {{ __('Dashboard') }}
     </h2>
     <div class="row justify-content-around align-items-center flex-wrap">

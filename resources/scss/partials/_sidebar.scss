@@ -49,6 +49,10 @@ a:focus {
         height: 100%;
         transition: all 0.3s;
     }
+
+    #logo-sidebar {
+        width: 100%;
+    }
     
     #sidebar.active {
         margin-left: -250px;
