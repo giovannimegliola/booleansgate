@@ -23,6 +23,7 @@ class UpdateItemRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200',
+            'image' => 'nullable|image',
             'description' => 'nullable',
             'category' => 'required|max:100',
             'type' => 'required|max:100',
@@ -43,6 +44,7 @@ class UpdateItemRequest extends FormRequest
             'weight.max' => 'Field ":attribute" must be max :max chars',
             'cost.required' => 'Field ":attribute" is required',
             'cost.max' => 'Field ":attribute" must be max :max chars',
+            'image.image' => 'Field ":attribute" must be an image'
         ];
     }
 }

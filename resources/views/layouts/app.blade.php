@@ -17,15 +17,16 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    @vite(['resources/js/sidebar.js'])
 </head>
 
 <body>
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+        <nav id="main_nav" class="navbar navbar-expand-md mb-0">
+            <div class="container-fluid">
+                {{-- <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
                         <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 150px">
                             <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -33,52 +34,47 @@
                             </g>
                         </svg>
                     </div> 
-                    {{-- config('app.name', 'Laravel') --}}
-                </a>
+                </a> --}}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent"> 
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            <button type="button" id="sidebarCollapse" class="btn btn-success">
+                                <i class="fas fa-align-left"></i>
+                            </button>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/characters') }}">{{ __('Characters') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/items') }}">{{ __('Items') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/admin/types') }}">{{ __('Types') }}</a>
-                        </li>
-                    </ul> 
-
+                        
+                    </ul>
+                    
+                    <h1 id="logo">BooleansGate</h1>
+                    
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->nickname }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('admin') }}">{{__('Dashboard')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -93,9 +89,16 @@
             </div>
         </nav>
 
-        <main class="">
+        <div class="wrapper">
+        @include('partials.sidebar')
+        <!-- Page Content  -->
+        <div id="content">
+            <main>
             @yield('content')
-        </main>
+            </main>
+        </div>
+    </div>
+        
     </div>
 </body>
 

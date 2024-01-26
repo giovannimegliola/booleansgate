@@ -4,7 +4,7 @@
 
 @section('content')
 <main id="characters">
-    <section class="container py-4 text-end">
+    <section class="container text-end">
         <a href="{{route('admin.characters.create')}}" class="btn btn-danger  fs-5 my-3">Create new Character</a>
 
         @if (session()->has('message'))

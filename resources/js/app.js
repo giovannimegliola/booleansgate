@@ -2,6 +2,9 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
+import "./chart.js";
+import "./chartTension.js";
+import "./chartPie.js";
 
 //Image preview on create
 const previewImage = document.getElementById("image");
