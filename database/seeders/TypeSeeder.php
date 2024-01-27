@@ -21,7 +21,7 @@ class TypeSeeder extends Seeder
         foreach ($types as $type) {
             $newType = new Type();
             $newType->name = $type['name'];
-            $newType->desc = $this->formatDescription($type['desc']);
+            $newType->desc = $type['desc'];
             // $newType->image = TypeSeeder::storeImage($type['image'], $type['name']);
             $newType->save();
         }
@@ -37,9 +37,9 @@ class TypeSeeder extends Seeder
     //     return $path;
     // }
 
-    private function formatDescription($description)
-    {
-        $description = str_replace(['#', '*'], '', $description);
-        return $description;
-    }
+    // private function formatDescription($description)
+    // {
+    //     $description = str_replace(['#', '*'], '', $description);
+    //     return $description;
+    // }
 }
