@@ -21,11 +21,12 @@ class TypeSeeder extends Seeder
         foreach ($types as $type) {
             $newType = new Type();
             $newType->name = $type['name'];
-            $newType->desc = $type['desc'];
+            $newType->desc = $this->formatDescription($type['desc']);
             // $newType->image = TypeSeeder::storeImage($type['image'], $type['name']);
             $newType->save();
         }
     }
+
     // public function storeImage($img, $name)
     // {
     //     $url = $img;
@@ -35,4 +36,10 @@ class TypeSeeder extends Seeder
     //     Storage::put($path, $contents);
     //     return $path;
     // }
+
+    private function formatDescription($description)
+    {
+        $description = str_replace(['#', '*'], '', $description);
+        return $description;
+    }
 }
