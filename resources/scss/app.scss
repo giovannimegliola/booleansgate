@@ -6,6 +6,8 @@
 @use './partials/items' as*;
 @use './partials/arenas' as*;
 @use './partials/type' as*;
+@use './partials/home'as*;
+
 $fa-font-path: "../fonts/webfonts" !default;
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";

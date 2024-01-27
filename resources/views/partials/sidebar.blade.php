@@ -4,12 +4,12 @@
         <img src="{{ asset('/storage/images/Ronaldo da Fiano Romano.gif') }}" alt="logo" id="logo-sidebar">
     </div>
 
-    <ul class="list-unstyled components">
+    <ul class="list-unstyled components pt-0">
         <li class="d-flex justify-content-center align-items-center border-bottom border-success {{ request()->is('/') ? 'my-active' : '' }}">
             <i class="fa-solid fa-house fs-3 px-2"></i>
             <a class="text-decoration-none text-light my-4" href="{{ url('/') }}">{{ __('Home') }}</a>
         </li>
-        <li class="d-flex justify-content-center align-items-center mt-4 {{ request()->is('admin') ? 'my-active' : '' }}">
+        <li class="d-flex justify-content-center align-items-center {{ request()->is('admin') ? 'my-active' : '' }}">
             <i class="fa-solid fs-4 fa-chart-pie text-danger px-2"></i>
             <a class="d-block text-decoration-none text-light" href="{{ url('/admin/dashboard') }}">{{ __('Dashboard') }}</a>
         </li>
