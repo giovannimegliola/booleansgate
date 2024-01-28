@@ -12,7 +12,7 @@
                         @endif
             </div>
             <div class="col d-flex flex-column justify-content-center">
-                <p class=" text-light fs-3 mx-5 ">description: <br> {{$character->description}}</p>
+                <p class=" text-light fs-3 mx-5 ">Description: <br> {{$character->description}}</p>
 
                 <div class=" d-flex fs-5 w-100 mx-5">
                     <span>Type:{{$character->type ? $character->type->name : 'Unknown'}}</span>
@@ -27,12 +27,12 @@
                 @endforeach
                 </div>
                 <div class=" d-flex mx-5">
-                    <a href="{{route('admin.characters.edit', $character->id)}}" class="btn btn-light  fs-5 my-3">modifica</a>
+                    <a href="{{route('admin.characters.edit', $character->id)}}" class="btn btn-light  fs-5 my-3">edit</a>
 
                     <form action="{{route('admin.characters.destroy', $character->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="cancel-button btn btn-danger fs-5 my-3 mx-2 py-2 px-3" data-item-title="{{$character->name}}">cancella</button>
+                        <button type="submit" class="cancel-button btn btn-danger fs-5 my-3 mx-2 py-2 px-3" data-item-title="{{$character->name}}">delete</button>
                     </form>
                 </div>
 

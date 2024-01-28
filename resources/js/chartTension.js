@@ -34,13 +34,23 @@ const config = {
             },
         },
         scales: {
+            x: {
+                ticks: {
+                    color: "white",
+                },
+            },
             y: {
-                // defining min and max so hiding the dataset does not change scale range
                 min: 0,
                 max: 100,
+                ticks: {
+                    color: "white",
+                },
             },
         },
     },
 };
 
-new Chart(document.getElementById("chartTension"), config);
+const chartTension = document.getElementById("chartTension");
+if (chartTension) {
+    new Chart(chartTension, config);
+}

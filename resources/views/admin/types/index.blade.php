@@ -3,23 +3,6 @@
 @section('content')
     <main id="types">
         <section class="container-fluid text-center">
-            @if ($errors->any())
-               <div class="alert alert-danger w-50 m-auto my-4">
-                   <ul>
-                       @foreach ($errors->all() as $error)
-                           <li>{{ $error }}</li>
-                       @endforeach
-                   </ul>
-               </div>
-           @endif
-
-           @if (session()->has('message'))
-            <div class="d-flex justify-content-center my-4">
-                <div class="alert-delete">
-                    <div class="alert alert-success">{{ session()->get('message') }}</div>
-                </div>
-            </div>
-            @endif
             
             <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Create new Type</button>
 
@@ -62,10 +45,13 @@
                         <th scope="row">
                             {{ $type->id}}
                         </th>
-                        <td class="fs-5 text-success">
+                        <td class="testing fs-5 text-success">
                             {{ $type->name}}
                         </td>
-                        <td>
+                        <td class="cl-name position-relative">
+                            <div class="desc">
+                                {{ $type->desc}}
+                            </div>
                             {{ substr($type->desc, 0, 50) . '...' }}
                         </td>
                         <td class="d-flex justify-content-center align-items-center">
@@ -106,6 +92,24 @@
             <div class="w-50 m-auto py-3">
                 {{ $types->links('vendor.pagination.custom-bootstrap-5') }}
             </div>
+
+            @if ($errors->any())
+               <div class="alert alert-danger w-50 m-auto my-4">
+                   <ul>
+                       @foreach ($errors->all() as $error)
+                           <li>{{ $error }}</li>
+                       @endforeach
+                   </ul>
+               </div>
+           @endif
+
+           @if (session()->has('message'))
+            <div class="d-flex justify-content-center my-4">
+                <div class="alert-delete">
+                    <div class="alert alert-success">{{ session()->get('message') }}</div>
+                </div>
+            </div>
+            @endif
         </section>
     </main>
 @endsection
