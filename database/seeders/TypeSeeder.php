@@ -36,10 +36,4 @@ class TypeSeeder extends Seeder
     //     Storage::put($path, $contents);
     //     return $path;
     // }
-
-    // private function formatDescription($description)
-    // {
-    //     $description = str_replace(['#', '*'], '', $description);
-    //     return $description;
-    // }
 }
