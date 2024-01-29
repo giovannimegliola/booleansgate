@@ -4,44 +4,71 @@
         "description": "Il più grande giocatore di lol degli ace gamers",
         "attack": "99",
         "defence": "99",
-        "speed": "1",
-        "life": "100",
+        "speed": "31",
+        "life": "500",
         "type_id": "1"
     },
     {
         "name": "Pietro Smusi",
         "description": "Giocatore spietato di Arma 3, temuto da grandi e piccini",
-        "attack": "25",
-        "defence": "25",
-        "speed": "75",
-        "life": "100",
+        "attack": "36",
+        "defence": "32",
+        "speed": "76",
+        "life": "500",
         "type_id": "2"
     },
     {
         "name": "Alfonso Torrone",
         "description": "Non pensare di essere al sicuro vicino a lui, soprattutto se è Natale",
-        "attack": "49",
-        "defence": "34",
-        "speed": "15",
-        "life": "100",
+        "attack": "91",
+        "defence": "79",
+        "speed": "28",
+        "life": "500",
         "type_id": "3"
     },
     {
         "name": "Ronaldo da Fiano Romano",
         "description": "Aho a fio de na bona donna, io so de Fiano Romano",
-        "attack": "67",
-        "defence": "12",
-        "speed": "97",
-        "life": "100",
+        "attack": "50",
+        "defence": "20",
+        "speed": "81",
+        "life": "500",
         "type_id": "4"
     },
     {
         "name": "Lamberto Lasagna",
         "description": "Da grande voleva fare il cuoco, è finito a fare il giudice di X-Factor",
-        "attack": "32",
+        "attack": "33",
         "defence": "57",
-        "speed": "24",
-        "life": "100",
+        "speed": "57",
+        "life": "500",
         "type_id": "5"
+    },
+    {
+        "name": "Sabrina Malavita",
+        "description": "Non farti ingannare dal suo cognome, non è una malavitosa ma ha semplicemente dolore alla vita",
+        "attack": "40",
+        "defence": "28",
+        "speed": "69",
+        "life": "500",
+        "type_id": "6"
+    },
+    {
+        "name": "Giannetto Polaretto",
+        "description": "L'unica cosa che puoi sciogliergli è il cuore <3",
+        "attack": "72",
+        "defence": "23",
+        "speed": "53",
+        "life": "500",
+        "type_id": "7"
+    },
+    {
+        "name": "Luciano Spalletti",
+        "description": "Uomini forti, destini forti. Uomini deboli, destini deboli. Non c'è altra strada",
+        "attack": "95",
+        "defence": "69",
+        "speed": "28",
+        "life": "500",
+        "type_id": "8"
     }
 ]
